@@ -25,11 +25,7 @@ public class EventsAdapter {
         eventsHelper = new EventsHelper(context);
     }
 
-    public ArrayList<String> getCluster() {
-        return Cluster;
-    }
-
-    public void update_cluster_list(){
+    public ArrayList<String> getCluster(){                              //todo get cluster list
         Log.i("in EventsAdapter","updating cluster list");
         Cluster.clear();
         SQLiteDatabase db = eventsHelper.getWritableDatabase();
@@ -42,9 +38,10 @@ public class EventsAdapter {
             c.moveToNext();
         }
         c.close();
+        return Cluster;
     }
 
-    public ArrayList<String> getEventnamesOfCluster(String cluster){
+    public ArrayList<String> getEventnamesOfCluster(String cluster){                    //todo get events present in 1 cluster
         Eventnames.clear();
         SQLiteDatabase db = eventsHelper.getWritableDatabase();
         Cursor cursor = db.query(true, EventsHelper.TABLE_NAME, new String[]{EventsHelper.NAME}, EventsHelper.CLUSTER + " = ?", new String[]{cluster}, null, null, null, null);
@@ -57,7 +54,7 @@ public class EventsAdapter {
         return Eventnames;
     }
 
-    public EventInfo getEventInfo(String eventName){
+    public EventInfo getEventInfo(String eventName){                                    //todo get event info
         EventInfo eventInfo = null;
         SQLiteDatabase db = eventsHelper.getWritableDatabase();
         String[] columns = {EventsHelper.EVENTID,EventsHelper.NAME,EventsHelper.START_TIME,EventsHelper.END_TIME,EventsHelper.VENUE,EventsHelper.DATE,EventsHelper.CLUSTER,EventsHelper.MAXLIMIT,EventsHelper.LOCX,EventsHelper.LOCY,EventsHelper.DESCRIP,EventsHelper.LAST_UPDATE_TIME};
@@ -143,11 +140,11 @@ public class EventsAdapter {
     }
 
 
-    static class EventsHelper extends SQLiteOpenHelper {
+    private static class EventsHelper extends SQLiteOpenHelper {
         private static final String DATABASE_NAME = "pragyan.db";
         private static String TABLE_NAME = "events";
         Context context = null;
-        private static final int DATABASE_VERSION = 1;
+        private static final int DATABASE_VERSION = 5;
         private static final String ID = "_id";
         private static final String EVENTID = "eventid";
         private static final String NAME = "name";
@@ -161,8 +158,8 @@ public class EventsAdapter {
         private static final String LOCX = "locx";
         private static final String LOCY = "locy";
         private static final String DESCRIP = "description";
-        private static final String create = "CREATE TABLE "+TABLE_NAME+" ("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+EVENTID+" INTEGER, "+NAME+" TEXT, "+START_TIME+" TEXT, "+END_TIME+" TEXT, "+VENUE+" TEXT, "+DATE+" TEXT, "+CLUSTER+" TEXT, "+MAXLIMIT+" INTEGER, "+LOCX+" TEXT, "+LOCY+" TEXT, "+DESCRIP+" TEXT, "+LAST_UPDATE_TIME+" TEXT";
-        private static final String drop = "DROP TABLE IF EXISTS "+TABLE_NAME;
+        private static final String create = "CREATE TABLE "+TABLE_NAME+" ("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+EVENTID+" INTEGER, "+NAME+" TEXT, "+START_TIME+" TEXT, "+END_TIME+" TEXT, "+VENUE+" TEXT, "+DATE+" TEXT, "+CLUSTER+" TEXT, "+MAXLIMIT+" INTEGER, "+LOCX+" TEXT, "+LOCY+" TEXT, "+DESCRIP+" TEXT, "+LAST_UPDATE_TIME+" TEXT);";
+        private static final String drop = "DROP TABLE IF EXISTS "+TABLE_NAME+";";
         public EventsHelper(Context context)
         {
             super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -174,7 +171,7 @@ public class EventsAdapter {
             try {
                 sqLiteDatabase.execSQL(create);
             } catch (SQLException e) {
-                Log.d("hel", e.toString());
+                Log.d("created", e.toString());
             }
         }
 
@@ -184,7 +181,7 @@ public class EventsAdapter {
                 sqLiteDatabase.execSQL(drop);
                 onCreate(sqLiteDatabase);
             } catch (SQLException e) {
-                Log.d("hel",e.toString());
+                Log.d("upgraded",e.toString());
             }
         }
     }
