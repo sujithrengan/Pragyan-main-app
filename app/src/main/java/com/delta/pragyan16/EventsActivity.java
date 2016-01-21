@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -31,12 +32,19 @@ import java.net.URI;
 
 public class EventsActivity extends Activity {
 
+    TextView t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
+
+        t=(TextView)findViewById(R.id.cluster);
         GetEventsAPI g = new GetEventsAPI(EventsActivity.this,getApplicationContext());
         g.execute();
+
+
+
+
     }
 
     @Override
