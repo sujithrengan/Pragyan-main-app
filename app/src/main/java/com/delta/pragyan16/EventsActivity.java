@@ -77,6 +77,7 @@ public class EventsActivity extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();
             dialog.setMessage("Fetching Events Data...");
+            //dialog.setCancelable(false);
             dialog.show();
             eventsAdapter = new EventsAdapter(context);
         }

@@ -19,7 +19,21 @@
             android:layout_weight="1"
             android:background="#e74c3c"
             android:layout_height="match_parent"
-            android:id="@+id/frac2"></LinearLayout>
+            android:gravity="bottom"
+
+            android:id="@+id/frac2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="schedule"
+                android:id="@+id/txtschedule"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="#ffffff"
+                android:textSize="32sp"
+               />
+            </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -150,6 +164,7 @@ android:gravity="right|bottom"
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/txtevents"
             android:text="events"
             android:textColor="#ffffff"
 android:layout_marginRight="5dp"
