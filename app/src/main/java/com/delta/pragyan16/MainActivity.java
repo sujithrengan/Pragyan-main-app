@@ -3,15 +3,9 @@ package com.delta.pragyan16;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -58,7 +52,7 @@ public class MainActivity extends Activity {
 
                 Fractspin();
 
-                Intent i=new Intent(MainActivity.this,EventsActivity.class);
+                Intent i=new Intent(MainActivity.this,ClustersActivity.class);
                 MainActivity.this.startActivity(i);
             }
         });
