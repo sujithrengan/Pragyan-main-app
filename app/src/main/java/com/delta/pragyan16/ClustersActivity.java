@@ -63,8 +63,6 @@ public class ClustersActivity extends Activity {
 
 
 
-
-
     }
 
     @Override
@@ -89,22 +87,23 @@ public class ClustersActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
     class GetEventsAPI extends AsyncTask<Void,Void,Boolean> {                            //   todo call once if the database is empty
-        ProgressDialog dialog;
+        //ProgressDialog dialog;
         JSONObject jsonObject = null, descriptionObject = null;
         EventsAdapter eventsAdapter;
         Context context;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            dialog.setMessage("Fetching Events Data...");
+            //dialog.setMessage("Fetching Events Data...");
             //dialog.setCancelable(false);
-            dialog.show();
+            //dialog.show();
             eventsAdapter = new EventsAdapter(context);
         }
 
         public GetEventsAPI(Activity activity, Context c){
             this.context = c;
-            dialog = new ProgressDialog(activity);
+            //dialog = new ProgressDialog(activity);
         }
 
         @Override
@@ -164,8 +163,8 @@ public class ClustersActivity extends Activity {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
-            if(dialog.isShowing())
-                dialog.dismiss();
+            //if(dialog.isShowing())
+               // dialog.dismiss();
             if(aBoolean) {
                 try {
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
@@ -199,7 +198,7 @@ public class ClustersActivity extends Activity {
                     Log.i("JSON"," Json exception in on post Execute");
                 }
             }else{
-                Toast.makeText(getApplicationContext(),"Events data not received",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Poor connectivity. Failed to update!",Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pragyan_dark_grey"
+
+    tools:context="com.delta.pragyan16.SplashScreen">
+
+    <ImageView
+        android:id="@+id/logo_app_0"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo_chakra_ext" />
+
+    <ImageView
+        android:id="@+id/logo_app_1"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo_chakra_ext" />
+
+    <ImageView
+        android:id="@+id/logo_app_2"
+        android:layout_width="8.8dp"
+        android:layout_height="8.8dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo_chakra_ext"/>
+    <ImageView
+        android:layout_width="1.8dp"
+        android:layout_height="1.8dp"
+        android:id="@+id/logo_app_3"
+        android:src="@drawable/logo_chakra"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pragyan_logo_large"
+        android:src="@drawable/logo_app"
+        android:visibility="invisible"
+        />
+
+</RelativeLayout>
