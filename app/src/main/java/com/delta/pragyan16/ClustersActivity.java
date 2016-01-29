@@ -172,7 +172,7 @@ public class ClustersActivity extends Activity {
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject tempjsonObject = jsonArray.getJSONObject(i);
                         JSONObject tempdescObject = descArray.getJSONObject(i);
-                        if(tempdescObject.getString("event_name").equals(tempjsonObject.getString("event_name")))
+                        if(tempdescObject.getInt("event_id") != tempjsonObject.getInt("event_id"))
                             Log.i("JSON Events","Mismatched contents in the API");
                         EventInfo eventInfo = new EventInfo();
                         eventInfo.name = tempjsonObject.getString("event_name");
