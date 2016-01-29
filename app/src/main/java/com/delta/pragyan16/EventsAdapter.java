@@ -18,6 +18,7 @@ public class EventsAdapter {
     EventsHelper eventsHelper;
     ArrayList<String> Cluster = new ArrayList<>();
     ArrayList<String> Eventnames = new ArrayList<>();
+    ArrayList<EventInfo> Events = new ArrayList<>();
 
     public EventsAdapter(Context contex)
     {
@@ -40,6 +41,41 @@ public class EventsAdapter {
         c.close();
         return Cluster;
     }
+
+    public void utilgetAllEvents(){                                               //todo get all events utility function - also used to refresh the list
+                Events.clear();
+                SQLiteDatabase db = eventsHelper.getWritableDatabase();
+                String[] columns = {EventsHelper.EVENTID,EventsHelper.NAME,EventsHelper.START_TIME,EventsHelper.END_TIME,EventsHelper.VENUE,EventsHelper.DATE,EventsHelper.CLUSTER,EventsHelper.MAXLIMIT,EventsHelper.LOCX,EventsHelper.LOCY,EventsHelper.DESCRIP,EventsHelper.LAST_UPDATE_TIME};
+                Cursor cursor = db.query(true, EventsHelper.TABLE_NAME, columns, null, null, null, null, null, null);
+                int index = cursor.getColumnIndex(EventsHelper.NAME);
+                while(cursor.moveToNext()){
+                        if(cursor.getString(index)!= null|| !cursor.getString(index).isEmpty()) {
+                                EventInfo eventInfo = null;
+                                eventInfo = new EventInfo();
+                                eventInfo.name = cursor.getString(index);
+                                eventInfo.id = cursor.getInt(cursor.getColumnIndex(EventsHelper.EVENTID));
+                                eventInfo.cluster = cursor.getString(cursor.getColumnIndex(EventsHelper.CLUSTER));
+                                eventInfo.start_time = cursor.getString(cursor.getColumnIndex(EventsHelper.START_TIME));
+                                eventInfo.end_time = cursor.getString(cursor.getColumnIndex(EventsHelper.END_TIME));
+                                eventInfo.last_update_time = cursor.getString(cursor.getColumnIndex(EventsHelper.LAST_UPDATE_TIME));
+                                eventInfo.maxlimit = cursor.getInt(cursor.getColumnIndex(EventsHelper.MAXLIMIT));
+                                eventInfo.locx = cursor.getString(cursor.getColumnIndex(EventsHelper.LOCX));
+                                eventInfo.locy = cursor.getString(cursor.getColumnIndex(EventsHelper.LOCY));
+                                eventInfo.venue = cursor.getString(cursor.getColumnIndex(EventsHelper.VENUE));
+                                eventInfo.date = cursor.getString(cursor.getColumnIndex(EventsHelper.DATE));
+                                eventInfo.description = cursor.getString(cursor.getColumnIndex(EventsHelper.DESCRIP));
+                                Events.add(eventInfo);
+                            }
+                    }
+                cursor.close();
+            }
+
+                public ArrayList<EventInfo> getAllEvents(){                                     //todo get already existing events in the list. restores if the list is empty
+                if(Events.isEmpty())
+                        utilgetAllEvents();
+                return Events;                                                              //todo returns null if the database is empty
+            }
+
 
     public ArrayList<String> getEventnamesOfCluster(String cluster){                    //todo get events present in 1 cluster
         Eventnames.clear();
