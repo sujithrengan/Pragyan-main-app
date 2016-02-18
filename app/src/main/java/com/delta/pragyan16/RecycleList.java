@@ -49,7 +49,7 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
             this.Location=(TextView) view.findViewById(R.id.Location);
             this.Cate = (TextView) view.findViewById(R.id.Cate);
             this.lay=(RelativeLayout)itemView.findViewById(R.id.singlelistlayout);
-            this.text=(TextView)view.findViewById(R.id.textView);
+            //this.text=(TextView)view.findViewById(R.id.textView);
 
         }
     }
