@@ -56,12 +56,28 @@ public class MainActivity extends Activity {
                 MainActivity.this.startActivity(i);
             }
         });
+        frac[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // Log.e("touch","touched");
+
+                //if(offset+FRAC_COUNT==Utilities.strcolors.length)off
+
+                Fractspin();
+
+                Intent i = new Intent(MainActivity.this, UpcomingActivity.class);
+                MainActivity.this.startActivity(i);
+            }
+        });
         frac[9].setOnClickListener(fraconclick);
         frac[8].setOnClickListener(fraconclick);
         frac[7].setOnClickListener(fraconclick);
         frac[6].setOnClickListener(fraconclick);
         frac[5].setOnClickListener(fraconclick);
-
+        frac[4].setOnClickListener(fraconclick);
+        frac[3].setOnClickListener(fraconclick);
+        frac[1].setOnClickListener(fraconclick);
 
             txtevents=(TextView)findViewById(R.id.txtevents);
             txtschedule=(TextView)findViewById(R.id.txtschedule);
