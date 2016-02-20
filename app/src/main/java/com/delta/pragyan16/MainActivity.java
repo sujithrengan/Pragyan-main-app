@@ -1,15 +1,32 @@
 package com.delta.pragyan16;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 
 public class MainActivity extends Activity {
@@ -76,7 +93,15 @@ public class MainActivity extends Activity {
         frac[6].setOnClickListener(fraconclick);
         frac[5].setOnClickListener(fraconclick);
         frac[4].setOnClickListener(fraconclick);
-        frac[3].setOnClickListener(fraconclick);
+        frac[3].setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Fractspin();
+
+                Intent i = new Intent(MainActivity.this, ProfileActivity.class);
+                MainActivity.this.startActivity(i);
+            }
+        });
         frac[1].setOnClickListener(fraconclick);
 
             txtevents=(TextView)findViewById(R.id.txtevents);
@@ -131,4 +156,5 @@ view.setSelected(true);
         editor.apply();
 
     }
+
 }
