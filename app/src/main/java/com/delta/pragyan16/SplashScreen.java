@@ -29,8 +29,8 @@ import java.io.InputStreamReader;
 
 public class SplashScreen extends Activity {
 
-    ImageView images[] = new ImageView[4];
-    Animation animations[] = new Animation[4];
+    ImageView images[] = new ImageView[6];
+    Animation animations[] = new Animation[6];
     ImageView bigLogo;
     int i;
 
@@ -38,27 +38,18 @@ public class SplashScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        GetEventsAPI g = new GetEventsAPI(SplashScreen.this,getApplicationContext());
-        g.execute();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 startAnimations();
             }
         },1000);
-//        startAnimations();
     }
 
     private void startAnimations() {
-//        final ImageView image = (ImageView) findViewById(R.id.logo_app);
-//        Animation animation = AnimationUtils.loadAnimation(SplashScreen.this,R.anim.zoom_chakra_in);
-//        final ImageView image2 = (ImageView) findViewById(R.id.logo_app_second);
-//        final Animation animation2 = AnimationUtils.loadAnimation(SplashScreen.this,R.anim.zoom_chakra_out_left);
-//        image.startAnimation(animation);
-//        image2.startAnimation(animation2);
 
         bigLogo = (ImageView) findViewById(R.id.pragyan_logo_large);
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < 6; i++) {
             images[i] = (ImageView) findViewById(getResources().getIdentifier("logo_app_" + i, "id", "com.delta.pragyan16"));
             animations[i] = AnimationUtils.loadAnimation(SplashScreen.this, R.anim.zoom_chakra_in);
             images[i].startAnimation(animations[i]);
@@ -69,7 +60,7 @@ public class SplashScreen extends Activity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    for (int i = 0; i < 4; i++) {
+                    for (int i = 0; i < 6; i++) {
                         if (i % 2 == 0)
                             animations[i] = AnimationUtils.loadAnimation(SplashScreen.this, R.anim.zoom_chakra_out_left);
                         else
@@ -83,7 +74,7 @@ public class SplashScreen extends Activity {
 
                             @Override
                             public void onAnimationEnd(Animation animation) {
-                                for (int i = 0; i < 4; i++)
+                                for (int i = 0; i < 6; i++)
                                     images[i].setVisibility(View.INVISIBLE);
                                 bigLogo.setVisibility(View.VISIBLE);
                                 animations[0] = AnimationUtils.loadAnimation(SplashScreen.this, R.anim.pragyan_logo_bounce);
@@ -99,7 +90,6 @@ public class SplashScreen extends Activity {
                                         new Handler().postDelayed(new Runnable() {
                                             @Override
                                             public void run() {
-
                                                 SplashScreen.this.startActivity(new Intent(SplashScreen.this,MainActivity.class));
                                                 SplashScreen.this.finish();
                                             }
@@ -131,8 +121,7 @@ public class SplashScreen extends Activity {
 
     }
 
-
-    class GetEventsAPI extends AsyncTask<Void,Void,Boolean> {                            //   todo call once if the database is empty
+class GetEventsAPI extends AsyncTask<Void,Void,Boolean> {                            //   todo call once if the database is empty
         //ProgressDialog dialog;
         JSONObject jsonObject = null, descriptionObject = null;
         EventsAdapter eventsAdapter;
